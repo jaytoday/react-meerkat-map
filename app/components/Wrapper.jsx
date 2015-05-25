@@ -40,8 +40,7 @@ class Wrapper extends React.Component {
 }
 
 Wrapper.childContextTypes = {
-  tag: React.PropTypes.string.isRequired,
-  loggedIn: React.PropTypes.bool.isRequired,
+  title: React.PropTypes.string.isRequired,
   muiTheme: React.PropTypes.object,
   repoUrl: React.PropTypes.string.isRequired,
 };

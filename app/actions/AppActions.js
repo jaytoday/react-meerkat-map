@@ -13,7 +13,7 @@ class AppActions {
     this.generateActions(
       'updateFocusedMarker',
       'updateFlowSuccess',
-      'updateInstaData',
+      'updateData',
       'updateMarkers',
       'updateTimeout'
     );

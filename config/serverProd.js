@@ -1,6 +1,7 @@
 'use strict';
 
 require('../server')({
-  testData: false,
   separateStylesheet: true,
+  broadcastsRoute: false,
+  pollingTime: 5000
 });

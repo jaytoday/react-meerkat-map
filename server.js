@@ -5,14 +5,15 @@ import Hapi from 'hapi';
 import Redis from 'redis';
 import * as services from './lib/services';
 import SocketIO from 'socket.io';
-import { getTokens } from './lib/db';
 import {
-  addSubscription,
-  deleteSubscription,
-  setValidTokens
-} from './lib/instagram';
+  getBroadcasts,
+  getData,
+  emitBroadcasts
+} from './lib/meerkat';
 
 const server = new Hapi.Server();
+const client = Redis.createClient();
+server.app.client = client;
 
 export default (options) => {
   server.connection({
@@ -22,9 +23,6 @@ export default (options) => {
 
   server.register(
     [
-      {
-        register: require('hapi-auth-cookie'),
-      },
       {
         register: require('good'),
         options: {
@@ -47,13 +45,6 @@ export default (options) => {
       if (err) {
         throw err;
       }
-
-      server.auth.strategy('session', 'cookie', {
-        password: config.get('Web.cookie'),
-        cookie: 'sid',
-        isSecure: false,
-        clearInvalid: true,
-      });
     }
   );
 
@@ -73,42 +64,34 @@ export default (options) => {
     path: '/',
     config: {
       handler: services.index,
-      auth: {
-        strategy: 'session',
-        mode: 'try',
-      },
     },
   });
 
-  server.route({
-    method: 'GET',
-    path: '/auth',
-    handler: services.auth,
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/handleauth',
-    config: {
-      handler: services.handleAuth,
-      auth: {
-        strategy: 'session',
-        mode: 'try',
+  if (options.broadcastsRoute) {
+    server.route({
+      method: 'GET',
+      path: '/broadcasts',
+      handler: (request, reply) => {
+        getData(client, (err, data) => {
+          reply(err || data);
+        });
       },
-    },
-  });
+    });
+  }
 
-  server.route({
-    method: 'GET',
-    path: '/logout',
-    handler: services.logout,
-  });
+  function broadcastPolling(io) {
+    getData(client, (err, data) => {
+      if (err) {
+        return;
+      }
 
-  server.route({
-    method: ['GET', 'POST'],
-    path: '/ig',
-    handler: services.handleSubscription,
-  });
+      emitBroadcasts(io, data);
+    });
+
+    setTimeout(() => {
+      broadcastPolling(io);
+    }, options.pollingTime);
+  }
 
   server.start(() => {
     server.log('info', `Server running at: ${server.info.uri}`);
@@ -117,24 +100,11 @@ export default (options) => {
     server.app.options = options;
     server.app.io = io;
 
-    server.plugins['hapi-shutdown'].register(
-      {
-        taskname: 'shutdown',
-        task() {
-          deleteSubscription((err) => {
-            if (err) {
-              throw err;
-            }
-          });
-        },
-        timeout: 2000,
-      }
-    );
-
     io.on('connection', socket => {
       server.log('info', 'Client connected to local socket');
 
       socket.join('realtime');
+      io.to('realtime').emit('data:add', getBroadcasts(), true);
 
       socket.on('flow:pause', (callback) => {
         socket.leave('realtime');
@@ -151,46 +121,6 @@ export default (options) => {
       socket.on('disconnect', () => socket.leave('realtime'));
     });
 
-    if (options.testData) {
-      let counter = 1;
-      setInterval(() => {
-        let data = {
-          caption: `description ${counter}`,
-          id: counter,
-          latLng: [Math.random() * 180 - 90, Math.random() * 360 - 180],
-          user: {
-            /* eslint-disable */
-            profile_picture: '/public/user.jpg',
-            full_name: `User ${counter}`,
-            /* eslint-enable */
-            username: `user ${counter}`,
-          },
-        };
-
-        io.to('realtime').emit('data:add', [data], true);
-
-        counter++;
-      }, 1000);
-    } else {
-      const client = Redis.createClient();
-      server.app.client = client;
-
-      getTokens(client, (err, tokens) => {
-        if (err) {
-          throw err;
-        }
-
-        setValidTokens(tokens);
-        addSubscription((err) => {
-          if (err) {
-            throw err;
-          }
-        });
-      });
-
-      client.on('connect', () => server.log('info', 'Redis connection established'));
-      client.on('error', () => server.log('error', 'Redis connection error'));
-      client.on('end', () => server.log('error', 'Redis not running'));
-    }
+    broadcastPolling(io);
   });
 };

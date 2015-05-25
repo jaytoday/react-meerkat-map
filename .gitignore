@@ -6,3 +6,4 @@ build/*.json
 build/prerender/*
 build/public/*
 !build/public/user.jpg
+dump.rdb

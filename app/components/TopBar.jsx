@@ -1,11 +1,10 @@
 'use strict';
 
 import React from 'react';
-import AuthButton from './AuthButton';
 import FlowButton from './FlowButton';
 import GithubButton from './GithubButton';
 import Title from './Title';
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/lib/toolbar';
+import { Toolbar, ToolbarGroup } from 'material-ui/lib/toolbar';
 
 class TopBar extends React.Component {
   _getStyles() {
@@ -16,7 +15,7 @@ class TopBar extends React.Component {
         borderBottom: `1px solid ${theme.borderColor}`,
         boxShadow: '0px 1px 6px rgba(0, 0, 0, 0.12)',
       },
-      hashtag: {
+      title: {
         position: 'absolute',
         top: '0',
         left: '50%',
@@ -45,14 +44,6 @@ class TopBar extends React.Component {
     };
   }
 
-  _onLoginTouch() {
-    window.location.href = '/auth';
-  }
-
-  _onLogoutTouch() {
-    window.location.href = '/logout';
-  }
-
   _onFlowTouch() {
     this.props.updateFlow(this.props.flow);
   }
@@ -60,29 +51,20 @@ class TopBar extends React.Component {
   render() {
     let styles = this._getStyles.call(this);
 
-    let hashtag = `#${this.context.tag}`;
-    let authTouch = this._onLoginTouch;
-    let authLabel = 'Login';
-
-    if (this.context.loggedIn) {
-      authTouch = this._onLogoutTouch;
-      authLabel = 'Logout';
-    }
+    let title = this.context.title;
 
     if (this.props.itemCount > 0) {
-      hashtag = `${hashtag} (${this.props.itemCount})`;
+      title = `${title}s (${this.props.itemCount})`;
     }
 
     return (
       <Toolbar style={styles.root}>
         <Title />
-        <div className='hashtag' style={styles.hashtag}>
-          {hashtag}
+        <div className='title' style={styles.title}>
+          {title}
         </div>
         <ToolbarGroup key={1} style={styles.toolbarGroup.root}>
           <FlowButton label={this.props.flow} onTouchTap={this._onFlowTouch.bind(this)} style={styles.toolbarGroup.flatButton} />
-          <ToolbarSeparator style={styles.toolbarGroup.separator} />
-          <AuthButton label={authLabel} onTouchTap={authTouch} style={styles.toolbarGroup.flatButton} />
           <GithubButton repoUrl={this.context.repoUrl} style={styles.toolbarGroup.iconButton} />
         </ToolbarGroup>
       </Toolbar>
@@ -91,10 +73,9 @@ class TopBar extends React.Component {
 }
 
 TopBar.contextTypes = {
-  loggedIn: React.PropTypes.bool.isRequired,
   muiTheme: React.PropTypes.object,
   repoUrl: React.PropTypes.string.isRequired,
-  tag: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired,
 };
 
 TopBar.propTypes = {

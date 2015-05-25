@@ -7,10 +7,29 @@ import { mergeAndPrefix } from '../utils/stylePropable';
 
 class List extends React.Component {
   _getStyles() {
+    const theme = this.context.muiTheme.component.list;
+
     return {
+      title: {
+        color: theme.color,
+        borderBottom: `1px solid ${theme.borderColor}`,
+        backgroundColor: theme.backgroundColor,
+        width: '100%',
+        textAlign: 'center',
+        display: 'block',
+      },
       root: {
+        position: 'absolute',
+        top: '56px',
+        width: '290px',
+        overflowX: 'hidden',
+        overflowY: 'scroll',
+        height: 'calc(50% - 28px)',
+        right: '0',
+      },
+      ul: {
         listStyleType: 'none',
-        padding: '8px 0',
+        padding: '0',
         margin: '0',
       },
       transition: {
@@ -40,33 +59,43 @@ class List extends React.Component {
     let styles = this._getStyles();
 
     return (
-      <ul style={mergeAndPrefix(styles.root, this.props.style)}>
-        <ReactCSSTransitionGroup
-          enterTimeout={1000}
-          leaveTimeout={0}
-          style={styles.transition}
-        >
-          {this.props.itemData.map((obj) => {
-            return (
-              <ListItem
-                description={obj.user.username}
-                icon={obj.user.profile_picture}
-                key={obj.id}
-                onClick={this.props.onClick ? this.props.onClick.bind(null, obj) : undefined}
-                title={obj.user.full_name.trim() || '-'}
-              />
-            );
-          })}
-        </ReactCSSTransitionGroup>
-      </ul>
+      <div style={mergeAndPrefix(styles.root, this.props.style)}>
+        <span style={styles.title}>{this.props.title}</span>
+        <ul style={styles.ul}>
+          <ReactCSSTransitionGroup
+            enterTimeout={1000}
+            leaveTimeout={0}
+            style={styles.transition}
+          >
+            {this.props.itemData.map((obj) => {
+              return (
+                <ListItem
+                  count={obj.broadcast.count}
+                  date={obj.broadcast.date}
+                  description={obj.caption}
+                  icon={obj.user.profile_picture}
+                  key={obj.id}
+                  onClick={this.props.onClick ? this.props.onClick.bind(null, obj) : undefined}
+                  title={obj.user.full_name.trim() || '-'}
+                />
+              );
+            })}
+          </ReactCSSTransitionGroup>
+        </ul>
+      </div>
     );
   }
 }
+
+List.contextTypes = {
+  muiTheme: React.PropTypes.object,
+};
 
 List.propTypes = {
   itemData: React.PropTypes.array,
   onClick: React.PropTypes.func,
   style: React.PropTypes.object,
+  title: React.PropTypes.string,
 };
 
 List.defaultProps = {

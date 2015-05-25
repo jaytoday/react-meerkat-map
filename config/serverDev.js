@@ -1,5 +1,6 @@
 'use strict';
 
 require('../server')({
-  testData: true,
+  broadcastsRoute: true,
+  pollingTime: 5000
 });

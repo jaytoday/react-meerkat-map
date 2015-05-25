@@ -16,6 +16,21 @@ export default {
   },
   getComponentThemes(palette) {
     let obj = {
+      markerPopup: {
+        color: '#999797',
+      },
+      cover: {
+        backgroundColor: '#DDD',
+        labelWatchers: {
+          backgroundColor: 'rgba(51, 122, 183, 0.80)',
+        },
+        labelLocation: {
+          backgroundColor: 'rgba(0, 0, 0, 0.40)',
+        },
+      },
+      coverLabel: {
+        color: '#FFF',
+      },
       flatButton: {
         color: palette.canvasColor,
         hoverColor: colorManipulator.fade(palette.textColor, 0.2),
@@ -35,6 +50,11 @@ export default {
       title: {
         color: palette.textColor,
         hoverColor: colors.red300,
+      },
+      list: {
+        color: palette.textColor,
+        backgroundColor: palette.canvasColor,
+        borderColor: palette.borderColor,
       },
       listItem: {
         borderColor: '#EBEBEB',

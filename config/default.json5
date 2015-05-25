@@ -5,15 +5,10 @@
     webpack_port: 2992,
     cookie: 'secret'
   },
-  Instagram: {
-    client_id: '',
-    client_secret: '',
-    redirect_uri: '',
-    sub_uri: '',
-    tag: 'tag',
-    verify_token: ''
+  Meerkat: {
+    title: 'Live'
   },
   Github: {
-    repoUrl: ''
+    repoUrl: 'https://github.com/ababol/react-meerkat-map'
   }
 }

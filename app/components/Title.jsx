@@ -38,7 +38,7 @@ class Title extends React.Component {
         onMouseOut={this._handleMouseOut.bind(this)}
         onMouseOver={this._handleMouseOver.bind(this)}
         style={style}
-        text='GeoShare'
+        text='MeerkatMap'
       />
     );
   }

@@ -21,23 +21,46 @@ class MarkerCluster extends MapLayer {
     if (nextProps.newMarkerData.length > 0) {
       let markers = Object.assign({}, this.props.markers);
       let newMarkers = [];
+      let currentMarkers = {};
 
       nextProps.newMarkerData.forEach((obj) => {
-        let markerPopup = React.renderToStaticMarkup(
-          <MarkerPopup
-            caption={obj.caption}
-            imgUrl={obj.imgUrl}
-            profileUrl={obj.profileUrl}
-          />
-        );
+        currentMarkers[obj.id] = true;
 
-        let leafletMarker = Leaflet.marker(obj.latLng)
-          .bindPopup(markerPopup, {maxHeight: 350, maxWidth: 250, minWidth: 250})
-          .on('click', () => this.props.map.panTo(obj.latLng));
+        if (!markers[obj.id]) {
+          let markerPopup = React.renderToStaticMarkup(
+            <MarkerPopup
+              broadcast={obj.broadcast}
+              caption={obj.caption}
+            />
+          );
 
-        markers[obj.id] = leafletMarker;
-        newMarkers.push(leafletMarker);
+          let leafletMarker = Leaflet.marker(obj.latLng)
+            .bindPopup(markerPopup, { minWidth: 300, minHeight: 300 })
+            .on('click', () => this.props.map.panTo(obj.latLng));
+
+          markers[obj.id] = leafletMarker;
+          newMarkers.push(leafletMarker);
+        } else {
+          markers[obj.id].getPopup().setContent(
+            React.renderToStaticMarkup(
+              <MarkerPopup
+                broadcast={obj.broadcast}
+                caption={obj.caption}
+              />
+            )
+          );
+        }
       });
+
+      // Remove old layers
+      for (let id in markers) {
+        let layer = markers[id];
+
+        if (!currentMarkers[id]) {
+          this.leafletElement.removeLayer(layer);
+          delete markers[id];
+        }
+      }
 
       this.leafletElement.addLayers(newMarkers);
 
