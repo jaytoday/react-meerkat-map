@@ -11,7 +11,7 @@ class CoverLabel extends React.Component {
       padding: 5,
       color: theme.getComponentThemes(theme.getPalette()).coverLabel.color,
       textAlign: 'center',
-      whiteSpace: 'no-wrap',
+      whiteSpace: 'nowrap',
       borderRadius: '0.25em',
       fontWeight: 'bold',
       fontSize: 10,
@@ -25,7 +25,7 @@ class CoverLabel extends React.Component {
 
     return (
       <span style={mergeAndPrefix(style, this.props.style)}>
-        <i className={this.props.icon} style={style}></i> {this.props.label}
+        <i className={this.props.icon}></i> {this.props.label}
       </span>
     );
   }
