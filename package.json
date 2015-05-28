@@ -1,7 +1,7 @@
 {
   "name": "react-meerkat-map",
   "version": "1.0.0",
-  "description": "Meerkat Live Map",
+  "description": "A realtime world map of Meerkat Streams",
   "engines": {
     "iojs": "1.5.1"
   },

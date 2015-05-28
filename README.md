@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/ababol/react-meerkat-map.svg)](https://travis-ci.org/ababol/react-meerkat-map) [![Dependencies](https://david-dm.org/ababol/react-meerkat-map.svg)](https://david-dm.org/ababol/react-meerkat-map)
 
 # react-meerkat-map
-> Meerkat Live Map.
+> A realtime world map of Meerkat streams.
 
 This project is a fork of [geoshare](https://github.com/troutowicz/geoshare).
 

@@ -15,15 +15,14 @@ class List extends React.Component {
         borderBottom: `1px solid ${theme.borderColor}`,
         backgroundColor: theme.backgroundColor,
         width: '100%',
-        textAlign: 'center',
         display: 'block',
+        textAlign: 'center',
       },
       root: {
         position: 'absolute',
         top: '56px',
         width: '290px',
-        overflowX: 'hidden',
-        overflowY: 'scroll',
+        overflow: 'hidden',
         height: 'calc(50% - 28px)',
         right: '0',
       },
@@ -31,6 +30,9 @@ class List extends React.Component {
         listStyleType: 'none',
         padding: '0',
         margin: '0',
+        overflowX: 'hidden',
+        overflowY: 'scroll',
+        height: 'calc(100% - 21px)',
       },
       transition: {
         enter: {

@@ -27,18 +27,20 @@ class ListItem extends React.Component {
       root: {
         backgroundColor,
         cursor: 'pointer',
-        height: '72px',
+        height: '73px',
         transition: transitions.easeOut(),
       },
       icon: {
         root: {
-          position: 'absolute',
+          position: 'relative',
           marginLeft: '16px',
           marginTop: '17px',
+          float: 'left',
         },
         paper: {
           overflow: 'hidden',
           height: '41px',
+          width: '41px',
         },
         image: {
           width: '41px',
@@ -46,7 +48,7 @@ class ListItem extends React.Component {
       },
       content: {
         root: {
-          paddingLeft: '72px',
+          paddingLeft: '18px',
           paddingRight: '16px',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
@@ -66,11 +68,11 @@ class ListItem extends React.Component {
         },
       },
       borderBottom: {
-        position: 'absolute',
+        position: 'relative',
         marginTop: '10px',
         right: '0',
         left: '72px',
-        borderBottom: `1px solid ${theme.borderColor}`,
+        outline: `0.5px solid ${theme.borderColor}`,
       },
     };
   }

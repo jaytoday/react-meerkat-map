@@ -7,21 +7,25 @@ import { mergeAndPrefix } from '../utils/stylePropable';
 class BroadcastCount extends React.Component {
   _getStyle() {
     return {
-      display: 'flex',
-      alignItems: 'center',
+      root: {
+        display: 'flex',
+        alignItems: 'center',
+      },
+      firstIcon: {
+        marginLeft: 0,
+      },
     };
   }
 
   render() {
-    const style = this._getStyle();
-    const firstIcon = {marginLeft: 0};
+    const styles = this._getStyle();
 
     return (
-      <div style={mergeAndPrefix(style, this.props.style)}>
+      <div style={mergeAndPrefix(styles.root, this.props.style)}>
         <BroadcastCountIcon
           icon='mui-icon-comment'
           label={this.props.count.commentsCount}
-          style={firstIcon}
+          style={styles.firstIcon}
         />
         <BroadcastCountIcon
           icon='mui-icon-heart'
