@@ -6,7 +6,8 @@
     cookie: 'secret'
   },
   Meerkat: {
-    title: 'Stream'
+    title: 'Stream',
+    apiToken: 'YOUR_API_TOKEN'
   },
   Github: {
     repoUrl: 'https://github.com/ababol/react-meerkat-map'
