@@ -2,8 +2,7 @@
   Web: {
     host: 'localhost',
     port: 8080,
-    webpack_port: 2992,
-    cookie: 'secret'
+    webpack_port: 2992
   },
   Meerkat: {
     title: 'Stream',
