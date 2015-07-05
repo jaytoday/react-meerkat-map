@@ -1,22 +1,24 @@
 'use strict';
 
 import React from 'react';
-import ListItem from './ListItem';
 import ReactCSSTransitionGroup from './TimeoutTransitionGroup';
 import { mergeAndPrefix } from '../utils/stylePropable';
+import { List } from 'material-ui';
+import SideListItem from './SideListItem';
 
-class List extends React.Component {
+class SideList extends React.Component {
   _getStyles() {
     const theme = this.context.muiTheme.component.list;
 
     return {
-      title: {
+      subheaderStyle: {
         color: theme.color,
         borderBottom: `1px solid ${theme.borderColor}`,
         backgroundColor: theme.backgroundColor,
         width: '100%',
         display: 'block',
         textAlign: 'center',
+        lineHeight: '24px',
       },
       root: {
         position: 'absolute',
@@ -24,15 +26,16 @@ class List extends React.Component {
         width: '290px',
         overflow: 'hidden',
         height: 'calc(50% - 28px)',
+        paddingBottom: 0,
         right: '0',
       },
-      ul: {
+      listContainer: {
         listStyleType: 'none',
         padding: '0',
         margin: '0',
         overflowX: 'hidden',
         overflowY: 'scroll',
-        height: 'calc(100% - 21px)',
+        height: 'calc(100% - 25px)',
       },
       transition: {
         enter: {
@@ -61,9 +64,12 @@ class List extends React.Component {
     let styles = this._getStyles();
 
     return (
-      <div style={mergeAndPrefix(styles.root, this.props.style)}>
-        <span style={styles.title}>{this.props.title}</span>
-        <ul style={styles.ul}>
+      <List
+        style={mergeAndPrefix(styles.root, this.props.style)}
+        subheader={this.props.title}
+        subheaderStyle={styles.subheaderStyle}
+      >
+        <div style={styles.listContainer}>
           <ReactCSSTransitionGroup
             enterTimeout={1000}
             leaveTimeout={0}
@@ -71,37 +77,38 @@ class List extends React.Component {
           >
             {this.props.itemData.map((obj) => {
               return (
-                <ListItem
+                <SideListItem
+                  avatarUrl={obj.user.profile_picture}
                   count={obj.broadcast.count}
-                  date={obj.broadcast.date}
-                  description={obj.caption}
-                  icon={obj.user.profile_picture}
+                  description={`[${obj.broadcast.date}] ${obj.caption}`}
                   key={obj.id}
-                  onClick={this.props.onClick ? this.props.onClick.bind(null, obj) : undefined}
+                  onTouchTap={this.props.onClick ? this.props.onClick.bind(null, obj) : undefined}
+                  secondaryTextLines={2}
                   title={obj.user.full_name.trim() || '-'}
                 />
               );
             })}
           </ReactCSSTransitionGroup>
-        </ul>
-      </div>
+        </div>
+      </List>
     );
   }
+
 }
 
-List.contextTypes = {
+SideList.contextTypes = {
   muiTheme: React.PropTypes.object,
 };
 
-List.propTypes = {
+SideList.propTypes = {
   itemData: React.PropTypes.array,
   onClick: React.PropTypes.func,
   style: React.PropTypes.object,
   title: React.PropTypes.string,
 };
 
-List.defaultProps = {
+SideList.defaultProps = {
   style: {},
 };
 
-export default List;
+export default SideList;

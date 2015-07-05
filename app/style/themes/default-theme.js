@@ -19,6 +19,9 @@ export default {
       markerPopup: {
         color: '#999797',
       },
+      avatar: {
+        borderColor: '#FFF0F1',
+      },
       cover: {
         backgroundColor: '#DDD',
         labelWatchers: {
@@ -56,10 +59,8 @@ export default {
         backgroundColor: palette.canvasColor,
         borderColor: palette.borderColor,
       },
-      listItem: {
-        borderColor: '#EBEBEB',
-        color: colorManipulator.fade('rgba(0, 0, 0, .035)', 0),
-        hoverColor: 'rgba(0, 0, 0, .035)',
+      listDivider: {
+        backgroundColor: colorManipulator.fade(palette.borderColor, 0.3),
       },
     };
 
