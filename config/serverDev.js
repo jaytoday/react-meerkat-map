@@ -2,5 +2,5 @@
 
 require('../server')({
   broadcastsRoute: true,
-  pollingTime: 5000,
+  pollingTime: 10000,
 });

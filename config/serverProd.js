@@ -3,5 +3,5 @@
 require('../server')({
   separateStylesheet: true,
   broadcastsRoute: false,
-  pollingTime: 5000,
+  pollingTime: 10000,
 });

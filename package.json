@@ -8,7 +8,7 @@
   "main": "app/app.js",
   "scripts": {
     "build": "webpack --config config/webpack/production.config.js --progress --profile --colors",
-    "build-mui": "babel --stage 1 ./node_modules/material-ui/src --out-dir ./node_modules/material-ui/lib",
+    "postinstall": "babel --stage 1 ./node_modules/material-ui/src --out-dir ./node_modules/material-ui/lib",
     "dev-server": "webpack --config config/webpack/prerender.config.js & webpack-dev-server --config config/webpack/devServer.config.js --progress --colors --hot --inline",
     "dev": "babel-node --ignore 'node_modules','build','app' config/serverDev",
     "lint": "eslint --ext .js,.jsx app/ config/ lib/ test/ server.js",
