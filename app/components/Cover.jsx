@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import CoverLabel from 'CoverLabel';
+import CoverLabel from './CoverLabel';
 
 import theme from '../style/themes/default-theme';
 

@@ -8,7 +8,7 @@ import MarkerPopup from '../../../app/components/MarkerPopup';
 const TestUtils = React.addons.TestUtils;
 
 describe('MarkerPopup component', function () {
-  it('should set profile link using profileUrl property', function() {
+  xit('should set profile link using profileUrl property', function() {
     const profileUrl = 'https://instagram.com/me';
 
     const component = TestUtils.renderIntoDocument(
@@ -20,7 +20,7 @@ describe('MarkerPopup component', function () {
     assert.equal(href, profileUrl, 'profile link set');
   });
 
-  it('should set image URL using imgUrl property', function() {
+  xit('should set image URL using imgUrl property', function() {
     const imgUrl = 'https://instagram.com/me/img.png';
 
     const component = TestUtils.renderIntoDocument(
@@ -32,7 +32,7 @@ describe('MarkerPopup component', function () {
     assert.equal(src, imgUrl, 'image url set');
   });
 
-  it('should set caption using caption property', function() {
+  xit('should set caption using caption property', function() {
     const caption = 'foo';
 
     const component = TestUtils.renderIntoDocument(

@@ -7,8 +7,8 @@ class AppStore {
   constructor() {
     this.bindActions(AppActions);
 
-    this.imageData = { location: [], unknown: [] };
-    this.newImageData = { location: [], unknown: [] };
+    this.broadcastData = { location: [], unknown: [] };
+    this.newBroadcastData = { location: [], unknown: [] };
     this.markers = {};
     this.focusMarker = {};
     this.flow = 'Pause';
@@ -16,12 +16,12 @@ class AppStore {
 
   onUpdateData(data) {
     this.focusMarker = {};
-    this.newImageData = data;
-    this.imageData = data;
+    this.newBroadcastData = data;
+    this.broadcastData = data;
   }
 
   onUpdateMarkers(markers) {
-    this.newImageData = { location: [], unknown: [] };
+    this.newBroadcastData = { location: [], unknown: [] };
     this.markers = markers;
   }
 

@@ -57,8 +57,8 @@ class App extends React.Component {
 
   render() {
     const styles = this._getStyles();
-    const locNumber = this.props.imageData.location.length;
-    const unknownNumber = this.props.imageData.unknown.length;
+    const locNumber = this.props.broadcastData.location.length;
+    const unknownNumber = this.props.broadcastData.unknown.length;
     const titleLoc = `Map (${locNumber})`;
     const titleUnknown = `Unknown (${unknownNumber})`;
 
@@ -70,7 +70,7 @@ class App extends React.Component {
         <GeoMap
           focusMarker={this.props.focusMarker}
           markers={this.props.markers}
-          newMarkerData={this.props.newImageData.location}
+          newMarkerData={this.props.newBroadcastData.location}
           style={styles.map}
           updateMarkers={this.props.updateMarkers}
         />
@@ -86,12 +86,12 @@ class App extends React.Component {
         />
         {map}
         <SideList
-          itemData={this.props.imageData.location}
+          itemData={this.props.broadcastData.location}
           onClick={this._onListItemClick.bind(this)}
           title={titleLoc}
         />
         <SideList
-          itemData={this.props.imageData.unknown}
+          itemData={this.props.broadcastData.unknown}
           onClick={this._onListItemClick.bind(this)}
           style={styles.secondList}
           title={titleUnknown}
@@ -106,11 +106,11 @@ App.contextTypes = {
 };
 
 App.propTypes = {
+  broadcastData: React.PropTypes.object,
   flow: React.PropTypes.string,
   focusMarker: React.PropTypes.object,
-  imageData: React.PropTypes.object,
   markers: React.PropTypes.object,
-  newImageData: React.PropTypes.object,
+  newBroadcastData: React.PropTypes.object,
   updateData: React.PropTypes.func,
   updateFlow: React.PropTypes.func,
   updateFocusedMarker: React.PropTypes.func,

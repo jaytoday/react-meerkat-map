@@ -45,6 +45,7 @@ class SideListItem extends React.Component {
 
   render() {
     const styles = this._getStyles();
+    /* eslint-disable */
     const {
       avatarUrl,
       count,
@@ -52,6 +53,7 @@ class SideListItem extends React.Component {
       title,
       ...other
     } = this.props;
+    /* eslint-enable */
 
     return (
       <div>

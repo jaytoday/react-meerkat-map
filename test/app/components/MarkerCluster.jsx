@@ -10,7 +10,7 @@ import MyMap from '../../../app/components/Map';
 const TestUtils = React.addons.TestUtils;
 
 describe('MarkerCluster component', function () {
-  it('should add a marker for every property in newMarkerData property', function () {
+  xit('should add a marker for every property in newMarkerData property', function () {
     const data = [
       {
         id: 0,
