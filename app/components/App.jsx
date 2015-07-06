@@ -6,7 +6,7 @@ const GeoMap = isBrowser ? require('./Map') : undefined;
 
 import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import SideList from './SideList';
+import List from './List';
 import TopBar from './TopBar';
 import io from 'socket.io-client';
 
@@ -85,12 +85,12 @@ class App extends React.Component {
           updateFlow={this.props.updateFlow}
         />
         {map}
-        <SideList
+        <List
           itemData={this.props.broadcastData.location}
           onClick={this._onListItemClick.bind(this)}
           title={titleLoc}
         />
-        <SideList
+        <List
           itemData={this.props.broadcastData.unknown}
           onClick={this._onListItemClick.bind(this)}
           style={styles.secondList}

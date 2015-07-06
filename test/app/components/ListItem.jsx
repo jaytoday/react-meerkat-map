@@ -5,12 +5,12 @@ import sinon from 'sinon';
 import { assert } from 'chai';
 
 import compWithContext from '../../utils/compWithContext';
-import ListItemRaw from '../../../app/components/SideListItem';
+import ListItemRaw from '../../../app/components/ListItem';
 
 const ListItem = compWithContext(ListItemRaw);
 const TestUtils = React.addons.TestUtils;
 
-describe('SideListItem component', function () {
+describe('ListItem component', function () {
   xit('should embed children elements', function () {
     const component = TestUtils.renderIntoDocument(
       <ListItem

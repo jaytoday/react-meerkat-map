@@ -4,13 +4,13 @@ import React from 'react/addons';
 import { assert } from 'chai';
 
 import compWithContext from '../../utils/compWithContext';
-import ListItem from '../../../app/components/SideListItem';
-import ListRaw from '../../../app/components/SideList';
+import ListItem from '../../../app/components/ListItem';
+import ListRaw from '../../../app/components/List';
 
 const List = compWithContext(ListRaw);
 const TestUtils = React.addons.TestUtils;
 
-describe('SideList component', function () {
+describe('List component', function () {
   xit('should embed ListItem component for each item in itemData property', function () {
     const data = [
       {

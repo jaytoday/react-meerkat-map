@@ -4,7 +4,7 @@ import React from 'react';
 import { Avatar } from 'material-ui';
 import { imageError } from '../utils/imageError';
 
-class SideListItemAvatar extends React.Component {
+class ListItemAvatar extends React.Component {
   _getStyles() {
     const theme = this.context.muiTheme.component.avatar;
 
@@ -31,12 +31,12 @@ class SideListItemAvatar extends React.Component {
   }
 }
 
-SideListItemAvatar.contextTypes = {
+ListItemAvatar.contextTypes = {
   muiTheme: React.PropTypes.object,
 };
 
-SideListItemAvatar.propTypes = {
+ListItemAvatar.propTypes = {
   src: React.PropTypes.string,
 };
 
-export default SideListItemAvatar;
+export default ListItemAvatar;

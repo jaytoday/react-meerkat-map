@@ -6,10 +6,25 @@ import {
   ListDivider,
   ListItem,
 } from 'material-ui';
-import SideListItemAvatar from './SideListItemAvatar';
+import ListItemAvatar from './ListItemAvatar';
 import { mergeAndPrefix } from '../utils/stylePropable';
 
-class SideListItem extends React.Component {
+export default class extends React.Component {
+  static contextTypes = {
+    muiTheme: React.PropTypes.object,
+  };
+
+  static propTypes = {
+    avatarUrl: React.PropTypes.string,
+    count: React.PropTypes.object,
+    description: React.PropTypes.string,
+    leftAvatar: React.PropTypes.object,
+    onTouchTap: React.PropTypes.func,
+    secondaryText: React.PropTypes.object,
+    secondaryTextLines: React.PropTypes.number,
+    title: React.PropTypes.string,
+  };
+
   _getStyles() {
     const theme = this.context.muiTheme.component.listDivider;
 
@@ -60,7 +75,7 @@ class SideListItem extends React.Component {
         <ListItem
           {...other}
           innerDivStyle={styles.innerDiv}
-          leftAvatar={<SideListItemAvatar src={this.props.avatarUrl} />}
+          leftAvatar={<ListItemAvatar src={this.props.avatarUrl} />}
           secondaryText={
             <div style={styles.secondaryText}>
               <BroadcastCount count={this.props.count} />
@@ -75,20 +90,3 @@ class SideListItem extends React.Component {
     );
   }
 }
-
-SideListItem.contextTypes = {
-  muiTheme: React.PropTypes.object,
-};
-
-SideListItem.propTypes = {
-  avatarUrl: React.PropTypes.string,
-  count: React.PropTypes.object,
-  description: React.PropTypes.string,
-  leftAvatar: React.PropTypes.object,
-  onTouchTap: React.PropTypes.func,
-  secondaryText: React.PropTypes.object,
-  secondaryTextLines: React.PropTypes.number,
-  title: React.PropTypes.string,
-};
-
-export default SideListItem;

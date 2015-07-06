@@ -4,9 +4,24 @@ import React from 'react';
 import ReactCSSTransitionGroup from './TimeoutTransitionGroup';
 import { mergeAndPrefix } from '../utils/stylePropable';
 import { List } from 'material-ui';
-import SideListItem from './SideListItem';
+import ListItem from './ListItem';
 
-class SideList extends React.Component {
+export default class extends React.Component {
+  static contextTypes = {
+    muiTheme: React.PropTypes.object,
+  };
+
+  static propTypes = {
+    itemData: React.PropTypes.array,
+    onClick: React.PropTypes.func,
+    style: React.PropTypes.object,
+    title: React.PropTypes.string,
+  };
+
+  static defaultProps = {
+    style: {},
+  };
+
   _getStyles() {
     const theme = this.context.muiTheme.component.list;
 
@@ -77,7 +92,7 @@ class SideList extends React.Component {
           >
             {this.props.itemData.map((obj) => {
               return (
-                <SideListItem
+                <ListItem
                   avatarUrl={obj.user.profile_picture}
                   count={obj.broadcast.count}
                   description={`[${obj.broadcast.date}] ${obj.caption}`}
@@ -95,20 +110,3 @@ class SideList extends React.Component {
   }
 
 }
-
-SideList.contextTypes = {
-  muiTheme: React.PropTypes.object,
-};
-
-SideList.propTypes = {
-  itemData: React.PropTypes.array,
-  onClick: React.PropTypes.func,
-  style: React.PropTypes.object,
-  title: React.PropTypes.string,
-};
-
-SideList.defaultProps = {
-  style: {},
-};
-
-export default SideList;
