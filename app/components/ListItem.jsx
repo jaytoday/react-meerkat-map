@@ -75,17 +75,17 @@ export default class extends React.Component {
         <ListItem
           {...other}
           innerDivStyle={styles.innerDiv}
-          leftAvatar={<ListItemAvatar src={this.props.avatarUrl} />}
+          leftAvatar={<ListItemAvatar className='avatar' src={avatarUrl} />}
           secondaryText={
             <div style={styles.secondaryText}>
-              <BroadcastCount count={this.props.count} />
-              <div dangerouslySetInnerHTML={{__html: this.props.description}} style={styles.overflow}></div>
+              <BroadcastCount count={count} />
+              <div dangerouslySetInnerHTML={{__html: description}} style={styles.overflow}></div>
             </div>
           }
         >
-          <span style={mergeAndPrefix(styles.overflow, styles.title)}>{this.props.title}</span>
+          <span dangerouslySetInnerHTML={{__html: title}} style={mergeAndPrefix(styles.overflow, styles.title)}></span>
         </ListItem>
-        <ListDivider inset={true} style={styles.divider} />
+        <ListDivider className='border-bottom' inset={true} style={styles.divider} />
       </div>
     );
   }

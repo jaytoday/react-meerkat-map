@@ -16,9 +16,6 @@ export default {
   },
   getComponentThemes(palette) {
     let obj = {
-      markerPopup: {
-        color: '#999797',
-      },
       avatar: {
         borderColor: '#FFF0F1',
       },
@@ -43,6 +40,9 @@ export default {
         color: 'rgba(0, 0, 0, .40)',
         hoverColor: colors.fullBlack,
         rippleColor: colorManipulator.fade(palette.textColor, 0.8),
+      },
+      markerPopup: {
+        color: '#999797',
       },
       toolbar: {
         backgroundColor: palette.canvasColor,

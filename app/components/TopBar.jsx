@@ -13,7 +13,6 @@ class TopBar extends React.Component {
     return {
       root: {
         borderBottom: `1px solid ${theme.borderColor}`,
-        boxShadow: '0px 1px 6px rgba(0, 0, 0, 0.12)',
       },
       title: {
         position: 'absolute',
