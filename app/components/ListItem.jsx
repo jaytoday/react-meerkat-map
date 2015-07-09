@@ -7,6 +7,7 @@ import {
   ListItem,
 } from 'material-ui';
 import ListItemAvatar from './ListItemAvatar';
+import { mergeAndPrefix } from '../utils/stylePropable';
 
 export default class extends React.Component {
   static contextTypes = {
@@ -76,7 +77,7 @@ export default class extends React.Component {
           innerDivStyle={styles.innerDiv}
           leftAvatar={<ListItemAvatar className='avatar' src={avatarUrl} />}
           primaryText={
-            <div dangerouslySetInnerHTML={{__html: primaryText}} style={styles.secondaryText}></div>
+            <div dangerouslySetInnerHTML={{__html: primaryText}} style={mergeAndPrefix(styles.overflow, styles.primaryText)}></div>
           }
           secondaryText={
             <div style={styles.secondaryText}>
