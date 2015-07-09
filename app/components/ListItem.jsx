@@ -7,7 +7,6 @@ import {
   ListItem,
 } from 'material-ui';
 import ListItemAvatar from './ListItemAvatar';
-import { mergeAndPrefix } from '../utils/stylePropable';
 
 export default class extends React.Component {
   static contextTypes = {
@@ -20,16 +19,16 @@ export default class extends React.Component {
     description: React.PropTypes.string,
     leftAvatar: React.PropTypes.object,
     onTouchTap: React.PropTypes.func,
+    primaryText: React.PropTypes.string,
     secondaryText: React.PropTypes.object,
     secondaryTextLines: React.PropTypes.number,
-    title: React.PropTypes.string,
   };
 
   _getStyles() {
     const theme = this.context.muiTheme.component.listDivider;
 
     return {
-      title: {
+      primaryText: {
         fontSize: '12px',
         lineHeight: '15px',
       },
@@ -65,7 +64,7 @@ export default class extends React.Component {
       avatarUrl,
       count,
       description,
-      title,
+      primaryText,
       ...other
     } = this.props;
     /* eslint-enable */
@@ -76,15 +75,16 @@ export default class extends React.Component {
           {...other}
           innerDivStyle={styles.innerDiv}
           leftAvatar={<ListItemAvatar className='avatar' src={avatarUrl} />}
+          primaryText={
+            <div dangerouslySetInnerHTML={{__html: primaryText}} style={styles.secondaryText}></div>
+          }
           secondaryText={
             <div style={styles.secondaryText}>
               <BroadcastCount count={count} />
               <div dangerouslySetInnerHTML={{__html: description}} style={styles.overflow}></div>
             </div>
           }
-        >
-          <span dangerouslySetInnerHTML={{__html: title}} style={mergeAndPrefix(styles.overflow, styles.title)}></span>
-        </ListItem>
+        />
         <ListDivider className='border-bottom' inset={true} style={styles.divider} />
       </div>
     );

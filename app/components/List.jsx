@@ -98,8 +98,8 @@ export default class extends React.Component {
                   description={`[${obj.broadcast.date}] ${obj.caption}`}
                   key={obj.id}
                   onTouchTap={this.props.onClick ? this.props.onClick.bind(null, obj) : undefined}
+                  primaryText={obj.user.full_name.trim() || '-'}
                   secondaryTextLines={2}
-                  title={obj.user.full_name.trim() || '-'}
                 />
               );
             })}
