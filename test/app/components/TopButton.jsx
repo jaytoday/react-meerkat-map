@@ -5,19 +5,19 @@ import sinon from 'sinon';
 import { assert } from 'chai';
 
 import compWithContext from '../../utils/compWithContext';
-import FlowButtonRaw from '../../../app/components/FlowButton';
+import TopButtonRaw from '../../../app/components/TopButton';
 
-const FlowButton = compWithContext(FlowButtonRaw);
+const TopButton = compWithContext(TopButtonRaw);
 const TestUtils = React.addons.TestUtils;
 
-describe('FlowButton component', function () {
+describe('TopButton component', function () {
   it('should set value using label property', function () {
     const label = 'Foo';
 
     const component = TestUtils.renderIntoDocument(
-      <FlowButton label={label} />
+      <TopButton label={label} />
     );
-    const button = TestUtils.findRenderedComponentWithType(component, FlowButton);
+    const button = TestUtils.findRenderedComponentWithType(component, TopButton);
     const value = React.findDOMNode(button).getElementsByTagName('span')[0].innerHTML;
 
     assert.equal(value, label, 'label set');
@@ -27,9 +27,9 @@ describe('FlowButton component', function () {
     const onClick = sinon.spy();
 
     const component = TestUtils.renderIntoDocument(
-      <FlowButton onClick={onClick} />
+      <TopButton onClick={onClick} />
     );
-    const button = TestUtils.findRenderedComponentWithType(component, FlowButton);
+    const button = TestUtils.findRenderedComponentWithType(component, TopButton);
 
     TestUtils.Simulate.click(React.findDOMNode(button));
     assert.ok(onClick.calledOnce, 'click handler called');

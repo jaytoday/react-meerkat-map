@@ -4,7 +4,6 @@ import React from 'react/addons';
 import { assert } from 'chai';
 
 import compWithContext from '../../utils/compWithContext';
-import FlowButton from '../../../app/components/FlowButton';
 import GithubButton from '../../../app/components/GithubButton';
 import Title from '../../../app/components/Title';
 import TopBarRaw from '../../../app/components/TopBar';
@@ -43,7 +42,6 @@ describe('TopBar component', function () {
     );
 
     assert.ok(TestUtils.findRenderedComponentWithType(component, Title), 'has title');
-    assert.ok(TestUtils.findRenderedComponentWithType(component, FlowButton), 'has flow button');
     assert.ok(TestUtils.findRenderedComponentWithType(component, GithubButton), 'has github button');
   });
 });

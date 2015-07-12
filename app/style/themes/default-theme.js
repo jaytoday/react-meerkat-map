@@ -37,8 +37,8 @@ export default {
         textColor: palette.textColor,
       },
       githubButton: {
-        color: 'rgba(0, 0, 0, .40)',
-        hoverColor: colors.fullBlack,
+        color: palette.textColor,
+        hoverColor: colors.red300,
         rippleColor: colorManipulator.fade(palette.textColor, 0.8),
       },
       markerPopup: {

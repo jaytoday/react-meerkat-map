@@ -1,11 +1,14 @@
 'use strict';
 
 import React from 'react';
-import FlowButton from './FlowButton';
+import Radium from 'radium';
+import TopButton from './TopButton';
 import GithubButton from './GithubButton';
 import Title from './Title';
+import Transitions from 'material-ui/lib/styles/transitions';
 import { Toolbar, ToolbarGroup } from 'material-ui/lib/toolbar';
 
+@Radium
 class TopBar extends React.Component {
   _getStyles() {
     const theme = this.context.muiTheme.component.toolbar;
@@ -22,14 +25,21 @@ class TopBar extends React.Component {
         color: theme.textColor,
         fontSize: '15px',
         lineHeight: '56px',
+        transition: Transitions.easeOut(),
+
+        '@media (max-width: 1080px)': {
+          transform: 'none',
+          left: '24px',
+        },
       },
       toolbarGroup: {
         root: {
-          float: 'right',
+          position: 'absolute',
+          right: '0',
+          top: '0',
         },
         flatButton: {
           bottom: '1px',
-          margin: '0 24px',
         },
         iconButton: {
           top: '4px',
@@ -62,9 +72,10 @@ class TopBar extends React.Component {
         <div className='title' style={styles.title}>
           {title}
         </div>
-        <ToolbarGroup key={1} style={styles.toolbarGroup.root}>
-          <FlowButton label={this.props.flow} onTouchTap={this._onFlowTouch.bind(this)} style={styles.toolbarGroup.flatButton} />
+        <ToolbarGroup style={styles.toolbarGroup.root}>
           <GithubButton repoUrl={this.context.repoUrl} style={styles.toolbarGroup.iconButton} />
+          <TopButton label={this.props.flow} onTouchTap={this._onFlowTouch.bind(this)} style={styles.toolbarGroup.flatButton} />
+          <TopButton label={'Menu'} onTouchTap={this.props.openMenu} style={styles.toolbarGroup.flatButton} />
         </ToolbarGroup>
       </Toolbar>
     );
@@ -80,6 +91,7 @@ TopBar.contextTypes = {
 TopBar.propTypes = {
   flow: React.PropTypes.string,
   itemCount: React.PropTypes.number,
+  openMenu: React.PropTypes.func,
   style: React.PropTypes.object,
   updateFlow: React.PropTypes.func,
 };

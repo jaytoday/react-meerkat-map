@@ -1,45 +1,47 @@
 'use strict';
 
 import React from 'react';
-import transitions from 'material-ui/lib/styles/transitions';
+import Radium from 'radium';
+import Transitions from 'material-ui/lib/styles/transitions';
 import { ToolbarTitle } from 'material-ui/lib/toolbar';
 
+@Radium
 class Title extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {hovered: false};
-  }
-
   _getStyle() {
     const theme = this.context.muiTheme.component.title;
 
     return {
-      color: this.state.hovered ? theme.hoverColor : theme.color,
-      fontSize: '24px',
-      paddingRight: '0',
-      transition: transitions.easeOut(),
+      root: {
+        color: theme.color,
+        fontSize: '24px',
+        paddingRight: '0',
+        transition: Transitions.easeOut(),
+
+        ':hover': {
+          color: theme.hoverColor,
+        },
+
+        '@media (max-width: 1080px)': {
+          transform: 'translate(-100%, 0px)',
+        },
+      },
+      toolbarTitle: {
+        fontSize: '24px',
+        paddingRight: '0',
+      },
     };
   }
 
-  _handleMouseOver() {
-    this.setState({hovered: true});
-  }
-
-  _handleMouseOut() {
-    this.setState({hovered: false});
-  }
-
   render() {
-    const style = this._getStyle.call(this);
+    const styles = this._getStyle.call(this);
 
     return (
-      <ToolbarTitle
-        onMouseOut={this._handleMouseOut.bind(this)}
-        onMouseOver={this._handleMouseOver.bind(this)}
-        style={style}
-        text='MeerkatMap'
-      />
+      <div style={styles.root}>
+        <ToolbarTitle
+          style={styles.toolbarTitle}
+          text='MeerkatMap'
+        />
+      </div>
     );
   }
 }

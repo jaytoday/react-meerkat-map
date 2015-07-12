@@ -22,10 +22,12 @@
     "url": "https://github.com/ababol/react-meerkat-map.git"
   },
   "author": "Tim Routowicz",
-  "contributors": [{
-    "name": "Arnaud Babol",
-    "email": "arnaud@babol.me"
-  }],
+  "contributors": [
+    {
+      "name": "Arnaud Babol",
+      "email": "arnaud@babol.me"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ababol/react-meerkat-map/issues"
@@ -51,9 +53,11 @@
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "material-ui": "ababol/material-ui.git",
+    "radium": "^0.13.2",
     "react": "^0.13.3",
     "react-hot-loader": "^1.2.7",
     "react-leaflet": "^0.6.2",
+    "react-sidebar": "ababol/react-sidebar.git#right-sidebar",
     "react-tap-event-plugin": "^0.1.7",
     "redis": "^0.12.1",
     "request": "^2.58.0",
