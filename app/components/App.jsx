@@ -129,8 +129,10 @@ class App extends React.Component {
       sidebar = (
         <Sidebar
           docked={this.state.sidebarDocked}
+          enableShadow={false}
           onSetOpen={this.onSetSidebarOpen}
           open={this.state.sidebarOpen}
+          pullRight={true}
           sidebar={
             <div style={styles.sidebar}>
               <List
