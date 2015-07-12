@@ -43,7 +43,7 @@ class TopBar extends React.Component {
         },
         iconButton: {
           top: '4px',
-          margin: '0 -12px',
+          margin: '0',
         },
         separator: {
           float: 'none',
@@ -75,7 +75,7 @@ class TopBar extends React.Component {
         <ToolbarGroup style={styles.toolbarGroup.root}>
           <GithubButton repoUrl={this.context.repoUrl} style={styles.toolbarGroup.iconButton} />
           <TopButton label={this.props.flow} onTouchTap={this._onFlowTouch.bind(this)} style={styles.toolbarGroup.flatButton} />
-          <TopButton label={'Menu'} onTouchTap={this.props.openMenu} style={styles.toolbarGroup.flatButton} />
+          <TopButton label={'Menu'} onTouchTap={this.props.toggleMenu} style={styles.toolbarGroup.flatButton} />
         </ToolbarGroup>
       </Toolbar>
     );
@@ -91,8 +91,8 @@ TopBar.contextTypes = {
 TopBar.propTypes = {
   flow: React.PropTypes.string,
   itemCount: React.PropTypes.number,
-  openMenu: React.PropTypes.func,
   style: React.PropTypes.object,
+  toggleMenu: React.PropTypes.func,
   updateFlow: React.PropTypes.func,
 };
 

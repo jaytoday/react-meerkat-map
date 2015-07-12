@@ -12,6 +12,7 @@ import io from 'socket.io-client';
 import Sidebar from 'react-sidebar';
 
 let socket;
+let openTime;
 if (isBrowser) {
   socket = io();
 }
@@ -35,7 +36,9 @@ class App extends React.Component {
   }
 
   onSetSidebarOpen(open) {
-    this.setState({sidebarOpen: open});
+    if (new Date().getTime() - openTime > 1000) {
+      this.setState({sidebarOpen: open});
+    }
   }
 
   componentWillMount() {
@@ -72,11 +75,8 @@ class App extends React.Component {
         top: '50%',
       },
       map: {
-        position: 'absolute',
-        top: '0',
-        bottom: '0',
-        left: '0',
-        right: '0',
+        position: 'relative',
+        height: '100%',
       },
       sidebar: {
         width: '290px',
@@ -96,11 +96,12 @@ class App extends React.Component {
     }
   }
 
-  openMenu() {
+  toggleMenu() {
     if (this.state.mql.matches) {
       this.setState({sidebarDocked: !this.state.sidebarDocked});
     } else {
       this.setState({sidebarOpen: true});
+      openTime = new Date().getTime();
     }
   }
 
@@ -157,7 +158,7 @@ class App extends React.Component {
         <TopBar
           flow={this.props.flow}
           itemCount={locNumber + unknownNumber}
-          openMenu={this.openMenu.bind(this)}
+          toggleMenu={this.toggleMenu.bind(this)}
           updateFlow={this.props.updateFlow}
         />
         {sidebar}
@@ -176,8 +177,8 @@ App.propTypes = {
   focusMarker: React.PropTypes.object,
   markers: React.PropTypes.object,
   newBroadcastData: React.PropTypes.object,
-  openMenu: React.PropTypes.func,
   sidebarOpen: React.PropTypes.bool,
+  toggleMenu: React.PropTypes.func,
   updateData: React.PropTypes.func,
   updateFlow: React.PropTypes.func,
   updateFocusedMarker: React.PropTypes.func,
