@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Avatar } from 'material-ui';
+import Avatar from 'material-ui/lib/avatar';
 import { imageError } from '../utils/imageError';
 
 class ListItemAvatar extends React.Component {

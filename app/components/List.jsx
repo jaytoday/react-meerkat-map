@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactCSSTransitionGroup from './TimeoutTransitionGroup';
 import { mergeAndPrefix } from '../utils/stylePropable';
-import { List } from 'material-ui';
+import List from 'material-ui/lib/lists/list';
 import ListItem from './ListItem';
 
 export default class extends React.Component {

@@ -3,7 +3,7 @@
 import React from 'react';
 import Radium from 'radium';
 import Transitions from 'material-ui/lib/styles/transitions';
-import { ToolbarTitle } from 'material-ui/lib/toolbar';
+import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
 @Radium
 class Title extends React.Component {
