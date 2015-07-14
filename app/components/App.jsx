@@ -81,6 +81,13 @@ class App extends React.Component {
       sidebar: {
         width: '290px',
       },
+      sidebarContainer: {
+        position: 'absolute',
+        top: '56px',
+        left: '0',
+        right: '0',
+        bottom: '0',
+      },
     };
   }
 
@@ -148,7 +155,6 @@ class App extends React.Component {
               />
             </div>
           }
-          topSidebar={56}
         >
            {map}
         </Sidebar>
@@ -163,7 +169,9 @@ class App extends React.Component {
           toggleMenu={this.toggleMenu.bind(this)}
           updateFlow={this.props.updateFlow}
         />
-        {sidebar}
+        <div style={styles.sidebarContainer}>
+          {sidebar}
+        </div>
       </div>
     );
   }
