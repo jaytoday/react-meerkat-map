@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 
   onSetSidebarOpen(open) {
-    if (new Date().getTime() - openTime > 1000) {
+    if (new Date().getTime() - openTime > 2000) {
       this.setState({sidebarOpen: open});
     }
   }
