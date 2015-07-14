@@ -59,8 +59,9 @@ export default {
         backgroundColor: palette.canvasColor,
         borderColor: palette.borderColor,
       },
-      listDivider: {
-        backgroundColor: colorManipulator.fade(palette.borderColor, 0.3),
+      listItem: {
+        borderColor: colorManipulator.fade(palette.borderColor, 0.3),
+        rippleColor: colorManipulator.fade(palette.textColor, 0.5),
       },
     };
 

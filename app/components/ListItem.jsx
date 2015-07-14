@@ -23,9 +23,10 @@ export default class extends React.Component {
   };
 
   _getStyles() {
-    const theme = this.context.muiTheme.component.listDivider;
+    const theme = this.context.muiTheme.component.listItem;
 
     return {
+      rippleColor: theme.rippleColor,
       primaryText: {
         fontSize: '12px',
         lineHeight: '15px',
@@ -71,6 +72,7 @@ export default class extends React.Component {
       <div>
         <ListItem
           {...other}
+          focusRippleColor={styles.rippleColor}
           innerDivStyle={styles.innerDiv}
           leftAvatar={<ListItemAvatar className='avatar' src={avatarUrl} />}
           primaryText={
@@ -82,6 +84,7 @@ export default class extends React.Component {
               <div dangerouslySetInnerHTML={{__html: description}} style={styles.overflow}></div>
             </div>
           }
+          touchRippleColor={styles.rippleColor}
         />
         <ListDivider className='border-bottom' inset={true} style={styles.divider} />
       </div>
