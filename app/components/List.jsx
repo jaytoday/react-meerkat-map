@@ -6,22 +6,7 @@ import { mergeAndPrefix } from '../utils/stylePropable';
 import List from 'material-ui/lib/lists/list';
 import ListItem from './ListItem';
 
-export default class extends React.Component {
-  static contextTypes = {
-    muiTheme: React.PropTypes.object,
-  };
-
-  static propTypes = {
-    itemData: React.PropTypes.array,
-    onClick: React.PropTypes.func,
-    style: React.PropTypes.object,
-    title: React.PropTypes.string,
-  };
-
-  static defaultProps = {
-    style: {},
-  };
-
+class SideList extends React.Component {
   _getStyles() {
     const theme = this.context.muiTheme.component.list;
 
@@ -108,5 +93,21 @@ export default class extends React.Component {
       </List>
     );
   }
-
 }
+
+SideList.contextTypes = {
+  muiTheme: React.PropTypes.object,
+};
+
+SideList.propTypes = {
+  itemData: React.PropTypes.array,
+  onClick: React.PropTypes.func,
+  style: React.PropTypes.object,
+  title: React.PropTypes.string,
+};
+
+SideList.defaultProps = {
+  style: {},
+};
+
+export default SideList;

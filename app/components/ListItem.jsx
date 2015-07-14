@@ -6,22 +6,7 @@ import { ListDivider, ListItem } from 'material-ui/lib/lists';
 import ListItemAvatar from './ListItemAvatar';
 import { mergeAndPrefix } from '../utils/stylePropable';
 
-export default class extends React.Component {
-  static contextTypes = {
-    muiTheme: React.PropTypes.object,
-  };
-
-  static propTypes = {
-    avatarUrl: React.PropTypes.string,
-    count: React.PropTypes.object,
-    description: React.PropTypes.string,
-    leftAvatar: React.PropTypes.object,
-    onTouchTap: React.PropTypes.func,
-    primaryText: React.PropTypes.string,
-    secondaryText: React.PropTypes.object,
-    secondaryTextLines: React.PropTypes.number,
-  };
-
+class SideListItem extends React.Component {
   _getStyles() {
     const theme = this.context.muiTheme.component.listItem;
 
@@ -50,7 +35,7 @@ export default class extends React.Component {
         paddingTop: '8px',
       },
       divider: {
-        backgroundColor: theme.backgroundColor,
+        backgroundColor: theme.borderColor,
         paddingTop: '0.1px',
       },
     };
@@ -91,3 +76,25 @@ export default class extends React.Component {
     );
   }
 }
+
+SideListItem.contextTypes = {
+  muiTheme: React.PropTypes.object,
+};
+
+SideListItem.propTypes = {
+  avatarUrl: React.PropTypes.string,
+  count: React.PropTypes.object,
+  description: React.PropTypes.string,
+  leftAvatar: React.PropTypes.object,
+  onTouchTap: React.PropTypes.func,
+  primaryText: React.PropTypes.string,
+  secondaryText: React.PropTypes.object,
+  secondaryTextLines: React.PropTypes.number,
+};
+
+SideListItem.defaultProps = {
+  description: '',
+  primaryText: '',
+};
+
+export default SideListItem;
