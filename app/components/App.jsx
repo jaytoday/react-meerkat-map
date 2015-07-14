@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 
   onSetSidebarOpen(open) {
-    if (new Date().getTime() - openTime > 2000) {
+    if (new Date().getTime() - openTime > 1500) {
       this.setState({sidebarOpen: open});
     }
   }
@@ -129,10 +129,10 @@ class App extends React.Component {
       sidebar = (
         <Sidebar
           docked={this.state.sidebarDocked}
-          enableShadow={false}
           onSetOpen={this.onSetSidebarOpen}
           open={this.state.sidebarOpen}
           pullRight={true}
+          shadow={false}
           sidebar={
             <div style={styles.sidebar}>
               <List
