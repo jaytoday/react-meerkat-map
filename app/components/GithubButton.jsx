@@ -27,6 +27,7 @@ class GithubButton extends React.Component {
         iconStyle={styles.icon}
         linkButton={true}
         style={this.props.style}
+        target='_blank'
         touchRippleColor={styles.rippleColor} />
     );
   }
