@@ -81,11 +81,9 @@ export default (options) => {
 
   function broadcastPolling(io) {
     getData(client, (err, data) => {
-      if (err) {
-        return;
+      if (!err) {
+        emitBroadcasts(io, data);
       }
-
-      emitBroadcasts(io, data);
     });
 
     setTimeout(() => {
