@@ -106,6 +106,7 @@ class App extends React.Component {
   toggleMenu() {
     if (this.state.mql.matches) {
       this.setState({sidebarDocked: !this.state.sidebarDocked});
+      this.setState({sidebarOpen: false});
     } else {
       this.setState({sidebarOpen: true});
       openTime = new Date().getTime();
@@ -120,7 +121,7 @@ class App extends React.Component {
     const titleUnknown = `Unknown (${unknownNumber})`;
 
     // cant be executing client side js on prerender
-    let map, sidebar;
+    let map = '';
 
     if (isBrowser) {
       map = (
@@ -131,33 +132,6 @@ class App extends React.Component {
           style={styles.map}
           updateMarkers={this.props.updateMarkers}
         />
-      );
-
-      sidebar = (
-        <Sidebar
-          docked={this.state.sidebarDocked}
-          onSetOpen={this.onSetSidebarOpen}
-          open={this.state.sidebarOpen}
-          pullRight={true}
-          shadow={false}
-          sidebar={
-            <div style={styles.sidebar}>
-              <List
-                itemData={this.props.broadcastData.location}
-                onClick={this._onListItemClick.bind(this)}
-                title={titleLoc}
-              />
-              <List
-                itemData={this.props.broadcastData.unknown}
-                onClick={this._onListItemClick.bind(this)}
-                style={styles.secondList}
-                title={titleUnknown}
-              />
-            </div>
-          }
-        >
-           {map}
-        </Sidebar>
       );
     }
 
@@ -170,7 +144,30 @@ class App extends React.Component {
           updateFlow={this.props.updateFlow}
         />
         <div style={styles.sidebarContainer}>
-          {sidebar}
+          <Sidebar
+            docked={this.state.sidebarDocked}
+            onSetOpen={this.onSetSidebarOpen}
+            open={this.state.sidebarOpen}
+            pullRight={true}
+            shadow={false}
+            sidebar={
+              <div style={styles.sidebar}>
+                <List
+                  itemData={this.props.broadcastData.location}
+                  onClick={this._onListItemClick.bind(this)}
+                  title={titleLoc}
+                />
+                <List
+                  itemData={this.props.broadcastData.unknown}
+                  onClick={this._onListItemClick.bind(this)}
+                  style={styles.secondList}
+                  title={titleUnknown}
+                />
+              </div>
+            }
+          >
+             {map}
+          </Sidebar>
         </div>
       </div>
     );
