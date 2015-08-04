@@ -44,7 +44,7 @@ class SideListItem extends React.Component {
       },
       menu: {
         padding: '0',
-        top: '-3px',
+        top: '-4px',
       },
       menuIcon: {
         color: theme.buttonColor,
