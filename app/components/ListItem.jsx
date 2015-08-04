@@ -6,7 +6,6 @@ import { ListDivider, ListItem } from 'material-ui/lib/lists';
 import IconButton from 'material-ui/lib/icon-button';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import FontIcon from 'material-ui/lib/font-icon';
-import MoreIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import ListItemAvatar from './ListItemAvatar';
 import { mergeAndPrefix } from '../utils/stylePropable';
@@ -43,8 +42,11 @@ class SideListItem extends React.Component {
         backgroundColor: theme.borderColor,
         paddingTop: '0.1px',
       },
+      menu: {
+        padding: '0',
+        top: '-3px',
+      },
       menuIcon: {
-        padding: 0,
         color: theme.buttonColor,
       },
       menuItem: {
@@ -76,8 +78,8 @@ class SideListItem extends React.Component {
       <IconMenu
         iconButtonElement={
           <IconButton
-            style={styles.menuIcon}>
-            <MoreIcon color={styles.menuIcon.color} />
+            style={styles.menu}>
+            <FontIcon className='mui-icon-more-vert' color={styles.menuIcon.color} />
           </IconButton>
         }
       >
