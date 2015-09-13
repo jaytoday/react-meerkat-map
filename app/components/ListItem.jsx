@@ -85,7 +85,7 @@ class SideListItem extends React.Component {
       >
 
         <MenuItem
-          href={`http://meerkatstats.com/?u=${username}`}
+          href={`http://meerkatstats.com/${username}`}
           innerDivStyle={styles.menuItem}
           leftIcon={
             <FontIcon className='mui-icon-meerkat-stats' style={styles.menuItemLeftIcon} />

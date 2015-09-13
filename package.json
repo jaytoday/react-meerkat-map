@@ -44,6 +44,7 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "good": "^6.2.0",
     "good-console": "^5.0.2",
+    "hapi": "^8.0.0",
     "hapi-shutdown": "^0.1.1",
     "html-loader": "^0.3.0",
     "iso": "^4.1.0",
