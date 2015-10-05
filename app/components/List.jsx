@@ -35,6 +35,7 @@ class SideList extends React.Component {
         margin: '0',
         overflowX: 'hidden',
         overflowY: 'scroll',
+        '-webkit-overflow-scrolling': 'touch',
         height: 'calc(100% - 25px)',
       },
       transition: {
