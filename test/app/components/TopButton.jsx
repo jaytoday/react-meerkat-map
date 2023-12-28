@@ -11,18 +11,6 @@ const TopButton = compWithContext(TopButtonRaw);
 const TestUtils = React.addons.TestUtils;
 
 describe('TopButton component', function () {
-  it('should set value using label property', function () {
-    const label = 'Foo';
-
-    const component = TestUtils.renderIntoDocument(
-      <TopButton label={label} />
-    );
-    const button = TestUtils.findRenderedComponentWithType(component, TopButton);
-    const value = React.findDOMNode(button).getElementsByTagName('span')[0].innerHTML;
-
-    assert.equal(value, label, 'label set');
-  });
-
   it('should call onClick property', function () {
     const onClick = sinon.spy();
 

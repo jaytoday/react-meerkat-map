@@ -35,6 +35,7 @@ class SideList extends React.Component {
         margin: '0',
         overflowX: 'hidden',
         overflowY: 'scroll',
+        '-webkit-overflow-scrolling': 'touch',
         height: 'calc(100% - 25px)',
       },
       transition: {
@@ -85,6 +86,7 @@ class SideList extends React.Component {
                   onTouchTap={this.props.onClick ? this.props.onClick.bind(null, obj) : undefined}
                   primaryText={obj.user.full_name.trim() || '-'}
                   secondaryTextLines={2}
+                  username={obj.user.username}
                 />
               );
             })}
